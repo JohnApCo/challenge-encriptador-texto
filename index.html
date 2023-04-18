@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <title>Text Encryptor</title>
+</head>
+
+<body>
+  <header><button id="theme-color"><i class="fa-solid fa-sun"></i></button></header>
+  <main class="container-lg container-responsive">
+    <img class="logo" src="./assets/Logo.png" alt="logo">
+    <section class="text-in">
+      <textarea class="textarea textarea--in" name="text-input" id="text-input"
+        placeholder="Ingrese el texto aqui"></textarea>
+      <span id="error-message" class="step--2"><i class="fa fa-circle-info"></i> Solo letras minúsculas y sin
+        acentos</span>
+      <div class="flex button-group gap-md">
+        <button id="encrypt" class="button">Encriptar</button>
+        <button id="decrypt" class="button button--outline">Desencriptar</button>
+      </div>
+    </section>
+    <section class="text-out card empty">
+      <img class="card__img" src="./assets/Muñeco.png" alt="empty-text">
+      <div class="message">
+        <h5 class="card__title">Ningún mensaje fue encontrado</h5>
+        <div class="card__content">Ingresa el texto que desees encriptar o desencriptar.</div>
+      </div>
+      <textarea class="textarea textarea--out" name="text-input" id="text-input"></textarea>
+      <div class="flex justify-center">
+        <button id="copy" class="button button--outline">Copy</button>
+      </div>
+    </section>
+  </main>
+  <div id="error-popup" class="popup">
+    <div class="card">
+      <lottie-player src="./assets/success.json" background="transparent" speed="1"
+        style="width: 200px; height: 200px; margin: auto;" autoplay></lottie-player>
+      <h5 class="card__title">Error</h5>
+      <div class="card__content">El campo de texto esta vacio, Escribe una palabra</div>
+      <button class="button">OK</button>
+    </div>
+  </div>
+  <footer>Copyright &copy;
+    <script>document.write(new Date().getFullYear())</script> | Coded with <i class="fa fa-heart"></i> by <a
+      href="https://www.linkedin.com/in/johnapco/" target="_blank" rel="noopener noreferrer">JohnApCo</a>
+  </footer>
+  <script src="index.js"></script>
+  <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+</body>
+
+</html>
