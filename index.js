@@ -6,10 +6,10 @@ function openPopup(type, text) {
     success: "https://assets9.lottiefiles.com/packages/lf20_pqnfmone.json",
     error: "https://assets8.lottiefiles.com/packages/lf20_qpwbiyxf.json",
   }[type];
-  d.querySelector("#error-popup lottie-player").load(animation);
-  d.getElementById("error-popup").classList.add("popup--active");
-  d.querySelector("#error-popup .card__title").textContent = type;
-  d.querySelector("#error-popup .card__content").textContent = text;
+  d.querySelector("#popup lottie-player").load(animation);
+  d.getElementById("popup").classList.add("popup--active");
+  d.querySelector("#popup .card__title").textContent = type;
+  d.querySelector("#popup .card__content").textContent = text;
 }
 
 function getOffset(el) {
@@ -124,8 +124,8 @@ const handleClick = (event) => {
     // Alert the copied text
     openPopup("success", "Copiado con éxito.");
   }
-  if (event.target === d.querySelector("#error-popup .button")) {
-    d.getElementById("error-popup").classList.remove("popup--active");
+  if (event.target === d.querySelector("#popup .button")) {
+    d.getElementById("popup").classList.remove("popup--active");
   }
 };
 

@@ -279,6 +279,9 @@ header {
 }
 .card__title {
   margin: 0;
+}
+
+.popup .card__title {
   text-transform: capitalize;
 }
 
