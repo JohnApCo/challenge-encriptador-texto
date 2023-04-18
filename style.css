@@ -46,6 +46,7 @@
 
     --bg-color: var(--dark-blue-800);
     --bg-paper-color: var(--gray-800);
+    --text-title-color: #fff;
     --text-color: var(--gray-100);
     --divider-color: #132f4c;
     --shadow-sm: 0 0 2px rgba(0, 0, 0, 0.3);
@@ -57,6 +58,7 @@
 
   --bg-color: var(--dark-blue-800);
   --bg-paper-color: var(--gray-800);
+  --text-title-color: #fff;
   --text-color: var(--gray-100);
   --divider-color: #132f4c;
   --shadow-sm: 0 0 2px rgba(0, 0, 0, 0.3);
@@ -68,6 +70,7 @@
 
     --bg-color: var(--light-blue-100);
     --bg-paper-color: #fff;
+    --text-title-color: var(--gray-500);
     --text-color: var(--gray-400);
     --divider-color: var(--gray-100);
     --shadow-sm: 0 0 2px rgba(0, 0, 0, 0.3);
@@ -79,6 +82,7 @@
 
   --bg-color: var(--light-blue-100);
   --bg-paper-color: #fff;
+  --text-title-color: var(--gray-500);
   --text-color: var(--gray-400);
   --divider-color: var(--gray-100);
   --shadow-sm: 0 0 2px rgba(0, 0, 0, 0.3);
@@ -117,6 +121,7 @@ h5,
 h6 {
   font-weight: 700;
   line-height: 1.2;
+  color: var(--text-title-color);
 }
 .step--2 {
   font-size: var(--step--2);
@@ -184,7 +189,12 @@ header {
   pointer-events: none;
   width: var(--step-1);
 }
-
+/************************ Title ************************/
+.title {
+  margin: 1rem;
+  font-size: var(--step-3);
+  text-align: center;
+}
 /************************ Utils ************************/
 .container-lg {
   width: var(--container-lg);
@@ -269,7 +279,6 @@ header {
 }
 .card__title {
   margin: 0;
-  /* color: var(--gray-400); */
   text-transform: capitalize;
 }
 
@@ -339,7 +348,7 @@ header {
 .text-in {
   /* min-height: 100vh; */
   min-height: calc(100vh - 5rem);
-  padding: 4rem 0 2rem 0;
+  padding: 0rem 0 2rem 0;
 }
 
 .text-in,
