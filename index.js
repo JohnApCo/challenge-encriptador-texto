@@ -46,24 +46,24 @@ function handleEncrypter(text, encrypt = true) {
 
 const handleInputTextarea = (event) => {
   /* console.log(event); */
-  let textareaIn = d.querySelector(".textarea--in");
-  let textareaOut = d.querySelector(".textarea--out");
-  if (event.target === textareaOut) {
-    let textOut = d.querySelector(".text-out");
+  let $textareaIn = d.querySelector(".textarea--in");
+  let $textareaOut = d.querySelector(".textarea--out");
+  if (event.target === $textareaOut) {
+    let $textOut = d.querySelector(".text-out");
     if (event.target.value === "") {
-      textOut.classList.add("empty");
+      $textOut.classList.add("empty");
     } else {
-      textOut.classList.remove("empty");
+      $textOut.classList.remove("empty");
     }
   }
-  if (event.target === textareaIn || event.target === textareaOut) {
+  if (event.target === $textareaIn || event.target === $textareaOut) {
     if (window.innerWidth < 1024) {
       event.target.style.height = `0px`;
       event.target.style.height = `${event.target.scrollHeight + 2}px`;
     }
   }
-  if (event.target === textareaIn) {
-    if (/[A-ZÀ-ÿ\u00f1\u00d1]/g.test(textareaIn.value)) {
+  if (event.target === $textareaIn) {
+    if (/[A-ZÀ-ÿ\u00f1\u00d1]/g.test($textareaIn.value)) {
       d.getElementById("error-message").classList.add("text-error");
     } else {
       d.getElementById("error-message").classList.remove("text-error");
@@ -77,15 +77,15 @@ const handleClick = (event) => {
     event.target === d.getElementById("decrypt")
   ) {
     let newString = "";
-    let textareaIn = d.querySelector(".textarea--in");
-    let textareaOut = d.querySelector(".textarea--out");
-    let textOut = d.querySelector(".text-out");
-    if (textareaIn.value !== "") {
+    let $textareaIn = d.querySelector(".textarea--in");
+    let $textareaOut = d.querySelector(".textarea--out");
+    let $textOut = d.querySelector(".text-out");
+    if ($textareaIn.value !== "") {
       event.target === d.getElementById("encrypt")
         ? openPopup(
             "success",
             `Encriptado con éxito. ${
-              /[A-ZÀ-ÿ\u00f1\u00d1]/g.test(textareaIn.value)
+              /[A-ZÀ-ÿ\u00f1\u00d1]/g.test($textareaIn.value)
                 ? "Solo se encriptaron las letras minúsculas y sin acentos."
                 : ""
             } 
@@ -93,55 +93,39 @@ const handleClick = (event) => {
           )
         : openPopup("success", "Desencriptado con éxito.");
       newString = handleEncrypter(
-        textareaIn.value,
+        $textareaIn.value,
         event.target === d.getElementById("encrypt")
       );
     } else {
       openPopup("error", "El campo de texto esta vacío.");
     }
-    textareaOut.value = newString;
+    $textareaOut.value = newString;
     // Add css and remove in case of empty textarea
     newString === ""
-      ? textOut.classList.add("empty")
-      : textOut.classList.remove("empty");
+      ? $textOut.classList.add("empty")
+      : $textOut.classList.remove("empty");
     // text output resize height
     if (window.innerWidth < 1024) {
-      textareaOut.style.height = `0px`;
-      textareaOut.style.height = `${textareaOut.scrollHeight}px`;
+      $textareaOut.style.height = `0px`;
+      $textareaOut.style.height = `${$textareaOut.scrollHeight}px`;
       // scroll to textarea output
       window.scroll({
-        top: getOffset(textOut).top,
+        top: getOffset($textOut).top,
         behavior: "smooth",
       });
     }
   }
   if (event.target === d.getElementById("copy")) {
-    let textareaOut = d.querySelector(".textarea--out");
-    textareaOut.select();
-    textareaOut.setSelectionRange(0, 99999);
+    let $textareaOut = d.querySelector(".textarea--out");
+    $textareaOut.select();
+    $textareaOut.setSelectionRange(0, 99999);
     // Copy the text inside the text field
-    navigator.clipboard.writeText(textareaOut.value);
+    navigator.clipboard.writeText($textareaOut.value);
     // Alert the copied text
-    alert("Copied the text: " + textareaOut.value);
+    openPopup("success", "Copiado con éxito.");
   }
   if (event.target === d.querySelector("#error-popup .button")) {
     d.getElementById("error-popup").classList.remove("popup--active");
-  }
-  if (event.target === d.getElementById("theme-color")) {
-    let icon = d.querySelector("#theme-color i");
-    let htmlNode = d.documentElement;
-    let theme_dark = icon.classList.contains("fa-moon");
-    if (theme_dark) {
-      icon.classList.remove("fa-moon");
-      icon.classList.add("fa-sun");
-      htmlNode.classList.remove("dark");
-      htmlNode.classList.add("light");
-    } else {
-      icon.classList.remove("fa-sun");
-      icon.classList.add("fa-moon");
-      htmlNode.classList.remove("light");
-      htmlNode.classList.add("dark");
-    }
   }
 };
 

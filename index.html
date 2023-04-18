@@ -1,11 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="style.css">
+  <link type="text/css" rel="stylesheet" href="normalize.css" />
+  <link type="text/css" rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -14,7 +15,41 @@
 </head>
 
 <body>
-  <header><button id="theme-color"><i class="fa-solid fa-sun"></i></button></header>
+  <header><button class="theme-toggle"><i class="fa-solid fa-sun"></i></button>
+    <script> (function (d, w, ls) {
+        const $btn = d.querySelector(".theme-toggle");
+        let prefersDark = w.matchMedia('(prefers-color-scheme: dark)').matches, lightIcon = `<i class="fa-solid fa-sun"></i>`,
+          darkIcon = `<i class="fa-solid fa-moon"></i>`;
+
+        function lightMode() {
+          ls.setItem("theme", "light");
+          d.querySelector(":root").classList.add("light");
+          d.querySelector(":root").classList.remove("dark");
+          $btn.innerHTML = lightIcon;
+        }
+
+        function darkMode() {
+          ls.setItem("theme", "dark");
+          d.querySelector(":root").classList.remove("light");
+          d.querySelector(":root").classList.add("dark");
+          $btn.innerHTML = darkIcon;
+        }
+
+        if (ls.getItem("theme") === null) {
+          if (prefersDark) {
+            ls.setItem("theme", "dark");
+          } else {
+            ls.setItem("theme", "light");
+          }
+        }
+
+        if (ls.getItem("theme") === "dark") darkMode();
+        if (ls.getItem("theme") === "light") lightMode();
+
+        $btn.addEventListener("click", (e) => (ls.getItem("theme") === "dark") ? lightMode() : darkMode());
+      })(document, window, localStorage);
+    </script>
+  </header>
   <main class="container-lg container-responsive">
     <img class="logo" src="./assets/Logo.png" alt="logo">
     <section class="text-in">
