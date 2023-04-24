@@ -54,8 +54,15 @@
     <img class="logo" src="./assets/Logo.png" alt="logo">
     <section class="text-in">
       <h1 class="title">Encriptador de texto</h1>
-      <textarea class="textarea textarea--in" name="text-input" id="text-input"
-        placeholder="Ingrese el texto aqui"></textarea>
+      <div class="text-in-container">
+        <textarea class="textarea textarea--in" name="text-input" id="text-input"
+          placeholder="Ingrese el texto aqui"></textarea>
+        <div>
+          <button id="clear" class="icon-button ">
+            <i class="fa fa-xmark"></i>
+          </button>
+        </div>
+      </div>
       <span id="error-message" class="step--2"><i class="fa fa-circle-info"></i> Solo letras minúsculas y sin
         acentos</span>
       <div class="flex button-group gap-md">

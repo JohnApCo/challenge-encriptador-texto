@@ -167,9 +167,9 @@ footer a {
 /************************ Theme ************************/
 header {
   position: fixed;
-  right: 0;
+  left: 0;
   z-index: 100;
-  top: 20vh;
+  top: 15vh;
 }
 
 .theme-toggle {
@@ -183,7 +183,7 @@ header {
   cursor: pointer;
   aspect-ratio: 1/1;
   box-shadow: var(--shadow-sm);
-  border-radius: 0.5rem 0 0 0.5rem;
+  border-radius: 0 0.5rem 0.5rem 0;
 }
 .theme-toggle i {
   pointer-events: none;
@@ -262,11 +262,11 @@ header {
   text-align: left;
 }
 
-.textarea--out::placeholder {
-  text-align: center;
-}
-.textarea--out:placeholder-shown ~ .button {
+.textarea--in:placeholder-shown ~ div {
   display: none;
+}
+.textarea--in:not(placeholder-shown) ~ div {
+  display: block;
 }
 /************************ Card ************************/
 .card {
@@ -376,6 +376,11 @@ header {
     flex: 1 1 65%;
   }
 }
+.text-in-container {
+  display: flex;
+  flex-grow: 1;
+}
+
 /************************ Container Resposive ************************/
 .container-responsive {
   display: block;
@@ -408,4 +413,25 @@ header {
 .popup--active {
   visibility: visible;
   opacity: 1;
+}
+
+/************************ Icon ************************/
+.icon-button {
+  background: transparent;
+  align-items: start;
+  border-radius: 9999px;
+  font-size: var(--step-1);
+  line-height: 1;
+  width: 1.6em;
+  aspect-ratio: 1 / 1;
+  text-align: center;
+  border: none;
+  color: rgb(120, 120, 120);
+  cursor: pointer;
+}
+.icon-button * {
+  pointer-events: none;
+}
+.icon-button:hover {
+  background: rgba(120, 120, 120, 0.1);
 }

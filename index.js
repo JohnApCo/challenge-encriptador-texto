@@ -1,5 +1,8 @@
 const d = document;
-const textarea = document.querySelector(".textarea--out");
+const $textareaIn = d.querySelector(".textarea--in");
+const $textareaOut = d.querySelector(".textarea--out");
+const $textOut = d.querySelector(".text-out");
+const $textIn = d.querySelector(".text-in");
 
 function openPopup(type, text) {
   let animation = {
@@ -45,11 +48,7 @@ function handleEncrypter(text, encrypt = true) {
 }
 
 const handleInputTextarea = (event) => {
-  /* console.log(event); */
-  let $textareaIn = d.querySelector(".textarea--in");
-  let $textareaOut = d.querySelector(".textarea--out");
   if (event.target === $textareaOut) {
-    let $textOut = d.querySelector(".text-out");
     if (event.target.value === "") {
       $textOut.classList.add("empty");
     } else {
@@ -77,21 +76,16 @@ const handleClick = (event) => {
     event.target === d.getElementById("decrypt")
   ) {
     let newString = "";
-    let $textareaIn = d.querySelector(".textarea--in");
-    let $textareaOut = d.querySelector(".textarea--out");
-    let $textOut = d.querySelector(".text-out");
     if ($textareaIn.value !== "") {
-      event.target === d.getElementById("encrypt")
-        ? openPopup(
-            "success",
-            `Encriptado con éxito. ${
-              /[A-ZÀ-ÿ\u00f1\u00d1]/g.test($textareaIn.value)
-                ? "Solo se encriptaron las letras minúsculas y sin acentos."
-                : ""
-            } 
-              `
-          )
-        : openPopup("success", "Desencriptado con éxito.");
+      if (event.target === d.getElementById("encrypt")) {
+        if (/[A-ZÀ-ÿ\u00f1\u00d1]/g.test($textareaIn.value)) {
+          openPopup("error", `Solo letras minúsculas y sin acentos.`);
+        } else {
+          openPopup("success", `Encriptado con éxito.`);
+        }
+      } else {
+        openPopup("success", "Desencriptado con éxito.");
+      }
       newString = handleEncrypter(
         $textareaIn.value,
         event.target === d.getElementById("encrypt")
@@ -116,7 +110,6 @@ const handleClick = (event) => {
     }
   }
   if (event.target === d.getElementById("copy")) {
-    let $textareaOut = d.querySelector(".textarea--out");
     $textareaOut.select();
     $textareaOut.setSelectionRange(0, 99999);
     // Copy the text inside the text field
@@ -126,6 +119,12 @@ const handleClick = (event) => {
   }
   if (event.target === d.querySelector("#popup .button")) {
     d.getElementById("popup").classList.remove("popup--active");
+  }
+  if (event.target === d.getElementById("clear")) {
+    console.log("clear", $textareaIn.value);
+    $textareaIn.value = "";
+    $textareaOut.value = "";
+    $textOut.classList.add("empty");
   }
 };
 
